@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="./styles.css">
+ 
+  <title>Frontend Mentor | Thank you page</title>
+</head>
+<body>
+  <div class="container grid-center">
+    <main class="thank-you-page main-content">
+<img src="./illustration-thank-you.svg" alt="illustration">
+<p class="selection">You Selected <span id="selected-rating-value"></span> out of 5</p>
+
+  <header class="thank-you-header header">
+    <h1 class="component-header-title">Thank You</h1> 
+    <p class="component-header-description">
+      We appreciate you taking the time to give a rating.
+      If you ever need more support, don’t hesitate to
+      get in touch!
+    </p> 
+  </header>
+</main>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedRating = urlParams.get('rating');
+    document.getElementById('selected-rating-value').textContent = selectedRating;
+  });
+</script>
+</body>
+

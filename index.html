@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="./styles.css">
+ 
+  <title>Frontend Mentor | Interactive rating component</title>
+
+</head>
+<body>
+
+  <div class="container grid-center">
+    <main class="main-content ">
+      <div class="circle grid-center" >
+        <img class="star-icon" c src="./icon-star.svg" alt="star icon">
+      </div>
+     
+  <header class="header">
+    <h1 class="component-header-title">How did we do?</h1> 
+    <p class="component-header-description">
+     Please let us know how we did with your support request. All feedback is appreciated 
+     to help us improve our offering!
+    </p> 
+  </header>
+ 
+
+  <section class="rating-state">
+    <ul role="list" class="rating-numbers-list">
+      <li><a class="number-link grid-center" href="#">1</a></li>
+      <li><a class="number-link grid-center" href="#">2</a></li>
+      <li><a class="number-link grid-center" href="#">3</a></li>
+      <li><a class="number-link grid-center" href="#">4</a></li>
+      <li><a class="number-link grid-center" href="#">5</a></li>
+    </ul>
+  </section>
+ 
+
+  <form id="rating-form" action="./thank-you.html" method="get">
+    <input type="hidden" id="selected-rating" name="rating" value="">
+    <button type="submit" class="link-button">Submit</button>
+  </form>
+</main>
+</div>
+ 
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </footer>
+
+  <script>
+// Function to reset all links to their default state
+function resetLinkStates() {
+  var links = document.querySelectorAll('.number-link');
+  links.forEach(function(link) {
+    link.classList.remove('visited');
+  });
+}
+
+// Function to set the clicked link's state and reset others
+function setLinkState(event) {
+  resetLinkStates();
+  event.target.classList.add('visited');
+}
+
+// Add event listeners to all links
+document.querySelectorAll('.number-link').forEach(function(link) {
+  link.addEventListener('click', setLinkState);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const ratingLinks = document.querySelectorAll('.number-link');
+    const ratingInput = document.getElementById('selected-rating');
+    let selectedRating = '';
+
+    ratingLinks.forEach(function(link) {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        selectedRating = event.target.textContent;
+        ratingInput.value = selectedRating;
+        
+        // Highlight the selected rating
+        ratingLinks.forEach(l => l.classList.remove('visited'));
+        event.target.classList.add('visited');
+      });
+    });
+
+    document.getElementById('rating-form').addEventListener('submit', function(event) {
+      if (!selectedRating) {
+        event.preventDefault();
+        alert('Please select a rating before submitting.');
+      }
+    });
+  });
+  </script>
+</body>
+</html>
